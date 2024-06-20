@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <>
       <header>
-        <h1>News Center</h1>
+        <h1 className="heading">News Center</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
             <input

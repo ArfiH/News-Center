@@ -5,7 +5,7 @@ const API = "https://newsapi.org/v2/everything?apiKey=89cb4db888e246ab85278c7667
 
 const initialState = {
   isLoading: true,
-  query: "CSS",
+  query: "India",
   nbPages: 0,
   page: 0,
   hits: [],

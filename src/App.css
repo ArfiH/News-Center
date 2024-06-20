@@ -1,25 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400&family=Poppins:wght@400;600&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-:root {
-  --text: #050315;
-  --background: #fbfbfe;
-  --primary: #2f27ce;
-  --secondary: #dedcff;
-  --accent: #433bff;
-}
-
-body {
+.app {
   background-color: var(--background);
 }
 
-h1 {
+.heading {
+  color: var(--text);
   margin: 2rem 0;
   text-align: center;
 }
@@ -49,12 +33,12 @@ span {
 }
 
 .card {
-  min-width: 20rem;
   width: 40vw;
-  padding: 4rem;
+  padding: 2rem;
   background-color: var(--background);
-  box-shadow: var(--secondary) 0px 7px 29px 0px;
-  border-radius: 0.5rem;
+  box-shadow: var(--secondary) 0px 7px 35px 0px;
+  border-radius: 10px;
+  border: var(--accent) 1px solid;
   color: var(--primary);
 }
 
@@ -66,7 +50,7 @@ span {
 }
 
 .card-button a {
-  color: var(--secondary);
+  color: var(--accent);
   font-weight: 400;
 }
 
@@ -77,11 +61,7 @@ span {
 header {
   display: flex;
   justify-content: space-evenly;
-}
-
-form {
-  display: grid;
-  place-items: center;
+  align-items: center;
 }
 
 input {
@@ -104,7 +84,7 @@ button {
   padding: 0.8rem 2.2rem;
   border: none;
   background-color: var(--primary);
-  color: var(--background);
+  color: var(--text);
   margin: 3rem;
   cursor: pointer;
   display: inline-block;
