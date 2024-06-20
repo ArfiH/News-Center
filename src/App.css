@@ -48,6 +48,9 @@ span {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--background);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -56,10 +59,15 @@ span {
   color: var(--primary);
   padding: 1rem;
   transition: transform 0.2s ease-in-out;
+  height: 100%;
+}
+
+.card-content {
+  flex: 1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.1);
 }
 
 .card h2 {
@@ -76,6 +84,7 @@ span {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
+  margin-top: auto;
 }
 
 .card-button a {
@@ -138,8 +147,4 @@ button:hover {
   button {
     padding: 0.4rem 1rem;
   }
-
-  /* .toggle-container label {
-    width: 140vw;
-  } */
 }

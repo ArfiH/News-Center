@@ -17,16 +17,18 @@ const Stories = () => {
             {urlToImage && (
               <img className="card-img" src={urlToImage} alt={title} />
             )}
-            <h2>{title}</h2>
-            <p>
-              By <span>{author || "Unknown"}</span> | {description}
-            </p>
+            <div className="card-content">
+              <h2>{title}</h2>
+              <p>
+                By <span>{author || "Unknown"}</span> | {description}
+              </p>
+            </div>
             <div className="card-button">
               <a href={url} target="_blank" rel="noopener noreferrer">
                 Read More
               </a>
               <a href="#" onClick={() => removePost(url)}>
-                Remove
+                Not interested
               </a>
             </div>
           </div>

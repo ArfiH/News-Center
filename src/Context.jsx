@@ -1,7 +1,7 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
 
-const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd30036f&";
+const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd30036f0&";
 
 const initialState = {
   isLoading: true,
