@@ -38,6 +38,7 @@
   background-color: var(--toggle-fg);
   position: absolute;
   left: 0.25rem;
+  transition: background-color 250ms ease-in-out, transform 250ms ease-in-out;
 }
 
 .toggle:checked + label::after {

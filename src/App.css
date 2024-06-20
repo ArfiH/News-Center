@@ -1,5 +1,6 @@
 .app {
   background-color: var(--background);
+  transition: background-color 0.25s ease-in-out;
 }
 
 .heading {
