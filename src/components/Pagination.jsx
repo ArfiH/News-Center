@@ -6,11 +6,11 @@ const Pagination = () => {
   return (
     <>
       <div className="pagination-btn">
-        <button onClick={() => getPrevPage()}>PREV</button>
+        <button onClick={() => getPrevPage() } disabled={page == 0}>PREV</button>
         <p>
           {page + 1} of {nbPages}
         </p>
-        <button onClick={() => getNextPage()}>NEXT</button>
+        <button onClick={() => getNextPage() } disabled={page + 1 == nbPages}>NEXT</button>
       </div>
     </>
   );

@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+h1 {
+  text-align: center;
+}
+
 h2 {
   font-family: "IBM Plex Serif", serif;
 }
@@ -68,10 +72,8 @@ header {
 input {
   padding: 1rem;
   min-width: 40rem;
-  text-transform: capitalize;
-  border: none;
-  border-bottom: 0.2rem solid var(--text);
-  outline: none;
+  border: 1px solid var(--secondary);
+  border-radius: 30px;
 }
 
 .pagination-btn {
@@ -85,7 +87,7 @@ button {
   padding: 0.8rem 2.2rem;
   border: none;
   background-color: var(--primary);
-  color: var(--text);
+  color: white;
   margin: 3rem;
   cursor: pointer;
   display: inline-block;
