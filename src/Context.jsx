@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useEffect } from "react";
-import reducer from "./reducer"
+import reducer from "./reducer";
 
 const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd30036f0&";
 
@@ -22,12 +22,12 @@ const AppProvider = ({ children }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log("Fetched Data:", data); 
+      console.log("Fetched Data:", data);
       dispatch({
         type: "GET_STORIES",
         payload: {
-          hits: data.articles || [],  
-          nbPages: data.totalResults || 0, 
+          hits: data.articles || [],
+          nbPages: Math.ceil(data.totalResults / 10), // Calculate total pages
         },
       });
     } catch (error) {
@@ -59,10 +59,10 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchApiData(`${API}q=${state.query}&page=${state.page + 1}`);
+    fetchApiData(`${API}q=${state.query}&page=${state.page + 1}&pageSize=10`);
   }, [state.query, state.page]);
 
-  console.log("AppContext State:", state);  // Add this line
+  console.log("AppContext State:", state);
 
   return (
     <AppContext.Provider

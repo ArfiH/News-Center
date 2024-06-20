@@ -7,29 +7,30 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         hits: (action.payload.hits || []).filter(
-          (post) => post.title != "[Removed]"
-        ), // Ensure hits is always an array
-        nbPages: action.payload.nbPages || 0, // Default value for nbPages
+          (post) => post.title !== "[Removed]"
+        ),
+        nbPages: action.payload.nbPages || 0,
       };
     case "REMOVE_POST":
       return {
         ...state,
-        hits: state.hits.filter((post) => post.objectID !== action.payload),
+        hits: state.hits.filter((post) => post.url !== action.payload),
       };
     case "SEARCH_QUERY":
       return {
         ...state,
         query: action.payload,
+        page: 0, // Reset page number on new search
       };
     case "NEXT_PAGE":
       return {
         ...state,
-        page: state.page + 1,
+        page: state.page + 1 >= state.nbPages ? state.nbPages - 1 : state.page + 1,
       };
     case "PREV_PAGE":
       return {
         ...state,
-        page: state.page - 1,
+        page: state.page - 1 < 0 ? 0 : state.page - 1,
       };
     default:
       throw new Error(`No matching "${action.type}" action type`);

@@ -3,6 +3,7 @@ import { useGlobalContext } from "../Context";
 
 const Stories = () => {
   const { hits, isLoading, removePost } = useGlobalContext();
+  
   if (isLoading) {
     return (
       <>
@@ -10,6 +11,7 @@ const Stories = () => {
       </>
     );
   }
+  
   return (
     <>
       <div className="stories-div">
@@ -17,7 +19,7 @@ const Stories = () => {
           const { title, author, url, urlToImage, description } = curPost;
           return (
             <div className="card" key={url}>
-              {urlToImage ? <img className="card-img" src={urlToImage} alt={title} /> : "https://ichef.bbci.co.uk/news/1024/branded_news/1a2d/live/537ff930-6139-11ee-b101-6f93d6dfbcc2.png"}
+              {urlToImage && <img className="card-img" src={urlToImage} alt={title} />}
               <h2>{title}</h2>
               <p>
                 By <span> {author || "Unknown"} </span> | {description}
@@ -27,7 +29,7 @@ const Stories = () => {
                   Read More
                 </a>
                 <a href="#" onClick={() => removePost(url)}>
-                  Remove
+                  Not interested
                 </a>
               </div>
             </div>
