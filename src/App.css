@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400&family=Poppins:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --text: #050315;
+  --background: #fbfbfe;
+  --primary: #2f27ce;
+  --secondary: #dedcff;
+  --accent: #433bff;
+}
+
+body {
+  background-color: var(--background);
+}
+
+h1 {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+h2 {
+  font-family: "IBM Plex Serif", serif;
+}
+
+p {
+  margin: 2rem 0;
+  color: var(--text);
+  font-weight: 400;
+  display: inline-block;
+}
+
+span {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.stories-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.card {
+  min-width: 20rem;
+  width: 40vw;
+  padding: 4rem;
+  background-color: var(--background);
+  box-shadow: var(--secondary) 0px 7px 29px 0px;
+  border-radius: 0.5rem;
+  color: var(--primary);
+}
+
+.card-button {
+  flex-direction: row;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-button a {
+  color: var(--secondary);
+  font-weight: 400;
+}
+
+.card-button a:last-child {
+  color: var(--accent);
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form {
+  display: grid;
+  place-items: center;
+}
+
+input {
+  padding: 1rem;
+  min-width: 40rem;
+  text-transform: capitalize;
+  border: none;
+  border-bottom: 0.2rem solid var(--text);
+  outline: none;
+}
+
+.pagination-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 0.8rem 2.2rem;
+  border: none;
+  background-color: var(--primary);
+  color: var(--background);
+  margin: 3rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* responsive layout  */
+
+@media (max-width: 998px) {
+  .card {
+    min-width: 45rem;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-width: 35rem;
+    padding: 2rem;
+  }
+}
