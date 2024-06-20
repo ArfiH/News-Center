@@ -14,9 +14,10 @@ const Stories = () => {
     <>
       <div className="stories-div">
         {hits.map((curPost) => {
-          const { title, author, url, description } = curPost;
+          const { title, author, url, urlToImage, description } = curPost;
           return (
             <div className="card" key={url}>
+              {urlToImage ? <img className="card-img" src={urlToImage} alt={title} /> : "https://ichef.bbci.co.uk/news/1024/branded_news/1a2d/live/537ff930-6139-11ee-b101-6f93d6dfbcc2.png"}
               <h2>{title}</h2>
               <p>
                 By <span> {author || "Unknown"} </span> | {description}
