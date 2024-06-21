@@ -108,6 +108,7 @@ span {
   height: auto;
   max-height: 200px;
   object-fit: cover;
+  border-radius: 7px;
 }
 
 header {
@@ -181,9 +182,13 @@ button:hover {
   .top-container {
     display: block;
   }
+
+  .category-button {
+    padding: 0.5rem 0.3rem;
+  }
 }
 
-@media (max-width: 565px) {
+@media (max-width: 570px) {
   button {
     padding: 0.4rem 1rem;
   }
@@ -195,5 +200,9 @@ button:hover {
 
   .controls-container {
     flex-direction: column;
+  }
+
+  .category-button {
+    padding: 0.5rem 0.1rem;
   }
 }
