@@ -4,6 +4,7 @@ import Pagination from "./components/Pagination";
 import Stories from "./components/Stories";
 import Toggle from "./components/Toggle";
 import CategoryFilter from "./components/CategoryFilter";
+import Favorites from "./components/Favorites";
 import useLocalStorage from "use-local-storage";
 import "./App.css";
 
@@ -18,6 +19,7 @@ const App = () => {
       <CategoryFilter />
       <Pagination />
       <Stories />
+      <Favorites />
     </div>
   );
 };

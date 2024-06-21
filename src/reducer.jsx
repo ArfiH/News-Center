@@ -22,12 +22,6 @@ const reducer = (state, action) => {
         query: action.payload,
         page: 0, // Reset page number on new search
       };
-    case "SET_CATEGORY":
-      return {
-        ...state,
-        category: action.payload,
-        page: 0, // Reset page number on new category
-      };
     case "NEXT_PAGE":
       return {
         ...state,
@@ -37,6 +31,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         page: state.page - 1 < 0 ? 0 : state.page - 1,
+      };
+    case "ADD_TO_FAVORITES":
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+    case "REMOVE_FROM_FAVORITES":
+      return {
+        ...state,
+        favorites: state.favorites.filter((post) => post.url !== action.payload),
       };
     default:
       throw new Error(`No matching "${action.type}" action type`);

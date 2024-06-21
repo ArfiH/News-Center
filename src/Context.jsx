@@ -6,10 +6,10 @@ const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd3
 const initialState = {
   isLoading: true,
   query: "India",
-  category: "",
   nbPages: 0,
   page: 0,
   hits: [],
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 
 const AppContext = React.createContext();
@@ -47,13 +47,6 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const setCategory = (category) => {
-    dispatch({
-      type: "SET_CATEGORY",
-      payload: category,
-    });
-  };
-
   const getNextPage = () => {
     dispatch({
       type: "NEXT_PAGE",
@@ -66,10 +59,21 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const addToFavorites = (story) => {
+    dispatch({ type: "ADD_TO_FAVORITES", payload: story });
+  };
+
+  const removeFromFavorites = (url) => {
+    dispatch({ type: "REMOVE_FROM_FAVORITES", payload: url });
+  };
+
   useEffect(() => {
-    const categoryQuery = state.category ? `&category=${state.category}` : "";
-    fetchApiData(`${API}q=${state.query}${categoryQuery}&page=${state.page + 1}&pageSize=24`);
-  }, [state.query, state.category, state.page]);
+    fetchApiData(`${API}q=${state.query}&page=${state.page + 1}&pageSize=24`);
+  }, [state.query, state.page]);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(state.favorites));
+  }, [state.favorites]);
 
   console.log("AppContext State:", state);
 
@@ -79,9 +83,10 @@ const AppProvider = ({ children }) => {
         ...state,
         removePost,
         searchPost,
-        setCategory,
         getNextPage,
         getPrevPage,
+        addToFavorites,
+        removeFromFavorites,
       }}
     >
       {children}
@@ -92,7 +97,7 @@ const AppProvider = ({ children }) => {
 const useGlobalContext = () => {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error("useGlobalContext must be used within an AppProvider");
+    throw new Error("useGlobalContext must be used within a AppProvider");
   }
   return context;
 };

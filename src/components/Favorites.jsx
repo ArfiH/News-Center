@@ -1,16 +1,17 @@
 import React from "react";
 import { useGlobalContext } from "../Context";
 
-const Stories = () => {
-  const { hits, isLoading, removePost, addToFavorites } = useGlobalContext();
+const Favorites = () => {
+  const { favorites, removeFromFavorites } = useGlobalContext();
 
-  if (isLoading) {
-    return <h1>Loading.....</h1>;
+  if (favorites.length === 0) {
+    return <h2>No favorites added</h2>;
   }
 
   return (
-    <div className="stories-div">
-      {hits.map((curPost) => {
+    <div className="favorites">
+      <h2>Favorites</h2>
+      {favorites.map((curPost) => {
         const { title, author, url, urlToImage, description } = curPost;
         return (
           <div className="card" key={url}>
@@ -27,8 +28,8 @@ const Stories = () => {
               <a href={url} target="_blank" rel="noopener noreferrer">
                 Read More
               </a>
-              <a href="#" onClick={() => addToFavorites(curPost)}>
-                Add to favourites
+              <a href="#" onClick={() => removeFromFavorites(url)}>
+                Remove from favourites
               </a>
             </div>
           </div>
@@ -38,4 +39,4 @@ const Stories = () => {
   );
 };
 
-export default Stories;
+export default Favorites;
