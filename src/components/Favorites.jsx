@@ -12,11 +12,11 @@ const Favorites = () => {
     <div className="favorites">
       <h2>Favorites</h2>
       {favorites.map((curPost) => {
-        const { title, author, url, urlToImage, description } = curPost;
+        const { title, author, url, image, description } = curPost;
         return (
           <div className="card" key={url}>
-            {urlToImage && (
-              <img className="card-img" src={urlToImage} alt={title} />
+            {image && (
+              <img className="card-img" src={image} alt={title} />
             )}
             <div className="card-content">
               <h2>{title}</h2>

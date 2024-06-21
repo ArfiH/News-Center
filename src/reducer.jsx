@@ -6,10 +6,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        hits: (action.payload.hits || []).filter(
-          (post) => post.title !== "[Removed]"
-        ),
-        nbPages: action.payload.nbPages || 0,
+        hits: action.payload.hits,
+        totalPages: action.payload.totalPages,
       };
     case "REMOVE_POST":
       return {
@@ -20,27 +18,33 @@ const reducer = (state, action) => {
       return {
         ...state,
         query: action.payload,
-        page: 0, // Reset page number on new search
+        page: 1,
       };
     case "NEXT_PAGE":
       return {
         ...state,
-        page: state.page + 1 >= state.nbPages ? state.nbPages - 1 : state.page + 1,
+        page: state.page + 1 >= state.totalPages ? state.totalPages : state.page + 1,
       };
     case "PREV_PAGE":
       return {
         ...state,
-        page: state.page - 1 < 0 ? 0 : state.page - 1,
+        page: state.page - 1 <= 1 ? 1 : state.page - 1,
       };
     case "ADD_TO_FAVORITES":
+      const updatedFavorites = [...state.favorites, action.payload];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favorites: updatedFavorites,
       };
     case "REMOVE_FROM_FAVORITES":
+      const remainingFavorites = state.favorites.filter(
+        (item) => item.url !== action.payload
+      );
+      localStorage.setItem("favorites", JSON.stringify(remainingFavorites));
       return {
         ...state,
-        favorites: state.favorites.filter((post) => post.url !== action.payload),
+        favorites: remainingFavorites,
       };
     default:
       throw new Error(`No matching "${action.type}" action type`);
