@@ -2,16 +2,16 @@ import React from "react";
 import { useGlobalContext } from "../Context";
 
 const Pagination = () => {
-  const { page, nbPages, getPrevPage, getNextPage } = useGlobalContext();
+  const { page, totalPages, getPrevPage, getNextPage } = useGlobalContext();
   return (
     <div className="pagination-btn">
-      <button onClick={getPrevPage} disabled={page === 0}>
+      <button onClick={getPrevPage} disabled={page === 1}>
         PREV
       </button>
       <p>
-        {page + 1} of {nbPages}
+        {page} of {totalPages}
       </p>
-      <button onClick={getNextPage} disabled={page + 1 >= nbPages}>
+      <button onClick={getNextPage} disabled={page === totalPages}>
         NEXT
       </button>
     </div>

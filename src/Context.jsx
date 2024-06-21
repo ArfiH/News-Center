@@ -1,15 +1,16 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
 
-const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd30036f0&";
+const API = "https://gnews.io/api/v4/search?";
+const API_KEY = "1cc6e317e34975fd9166170648f1dfff";
 
 const initialState = {
   isLoading: true,
   query: "India",
-  nbPages: 0,
-  page: 0,
+  totalPages: 0,
+  page: 1,
   hits: [],
-  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  favorites: [],
 };
 
 const AppContext = React.createContext();
@@ -28,7 +29,7 @@ const AppProvider = ({ children }) => {
         type: "GET_STORIES",
         payload: {
           hits: data.articles || [],
-          nbPages: Math.ceil(data.totalResults / 24), // Calculate total pages
+          totalPages: Math.ceil(data.totalArticles / 10),  // Assume 10 results per page
         },
       });
     } catch (error) {
@@ -36,8 +37,8 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const removePost = (post_ID) => {
-    dispatch({ type: "REMOVE_POST", payload: post_ID });
+  const removePost = (post_URL) => {
+    dispatch({ type: "REMOVE_POST", payload: post_URL });
   };
 
   const searchPost = (searchQuery) => {
@@ -68,12 +69,8 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchApiData(`${API}q=${state.query}&page=${state.page + 1}&pageSize=24`);
+    fetchApiData(`${API}q=${state.query}&token=${API_KEY}&page=${state.page}&max=10`);
   }, [state.query, state.page]);
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(state.favorites));
-  }, [state.favorites]);
 
   console.log("AppContext State:", state);
 
