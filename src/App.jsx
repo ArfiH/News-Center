@@ -11,9 +11,11 @@ const App = () => {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
   return (
     <div className="app" data-theme={isDark ? "dark" : "light"}>
-      <Search />
+      <div className="top-container">
+        <Search />
+        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+      </div>
       <CategoryFilter />
-      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
       <Pagination />
       <Stories />
     </div>

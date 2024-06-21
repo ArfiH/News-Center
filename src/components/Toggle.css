@@ -2,6 +2,8 @@
   color: var(--text);
   margin-inline: auto;
   max-width: 200px;
+  flex-basis: 20%;
+  margin-bottom: 1rem;
 }
 
 .toggle {
@@ -39,4 +41,10 @@
 
 .toggle:checked + label::after {
   transform: translateX(100%);
+}
+
+@media (max-width: 880px) {
+  .toggle-container {
+    margin-bottom: 0;
+  }
 }
