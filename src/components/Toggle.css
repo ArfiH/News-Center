@@ -21,7 +21,7 @@
 
 .toggle + label::before {
   content: "";
-  height: 1rem;
+  height: 0.9rem;
   width: 2rem;
   background-color: var(--toggle-bg);
   border-radius: 10px;

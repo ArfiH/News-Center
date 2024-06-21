@@ -134,7 +134,7 @@ input {
 }
 
 button {
-  padding: 0.8rem 2.2rem;
+  padding: 1rem 2.2rem;
   border: none;
   background-color: var(--primary);
   color: white;
@@ -172,14 +172,28 @@ button:hover {
   color: white;
 }
 
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 880px) {
   .top-container {
     display: block;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 565px) {
   button {
     padding: 0.4rem 1rem;
+  }
+
+  .see-favorites-button {
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+
+  .controls-container {
+    flex-direction: column;
   }
 }

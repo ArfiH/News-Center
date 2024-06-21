@@ -24,10 +24,12 @@ const App = () => {
         <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
       </div>
       <CategoryFilter />
-      <button className="see-favorites-button" onClick={toggleDialog}>
-        See Favourites
-      </button>
-      <Pagination />
+      <div className="controls-container">
+        <button className="see-favorites-button" onClick={toggleDialog}>
+          See Favourites
+        </button>
+        <Pagination />
+      </div>
       <Stories />
       <Dialog isOpen={isDialogOpen} onClose={toggleDialog}>
         <Favorites />
