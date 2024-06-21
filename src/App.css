@@ -36,7 +36,7 @@ h1 {
 }
 
 h2 {
-  font-family: "IBM Plex Serif", serif;
+  text-align: center;
 }
 
 p {
@@ -69,16 +69,11 @@ span {
   border: var(--accent) 1px solid;
   color: var(--primary);
   padding: 1rem;
-  transition: transform 0.2s ease-in-out;
   height: 100%;
 }
 
 .card-content {
   flex: 1;
-}
-
-.card:hover {
-  transform: scale(1.1);
 }
 
 .card h2 {
