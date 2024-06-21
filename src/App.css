@@ -143,6 +143,29 @@ button:hover {
   background-color: var(--accent);
 }
 
+.category-filter {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: 1px solid var(--primary);
+  background-color: var(--background);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.category-button:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
 @media (max-width: 520px) {
   button {
     padding: 0.4rem 1rem;

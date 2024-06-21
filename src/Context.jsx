@@ -6,6 +6,7 @@ const API = "https://newsapi.org/v2/everything?apiKey=7aaa9a88543d4b349ee2263dd3
 const initialState = {
   isLoading: true,
   query: "India",
+  category: "",
   nbPages: 0,
   page: 0,
   hits: [],
@@ -27,7 +28,7 @@ const AppProvider = ({ children }) => {
         type: "GET_STORIES",
         payload: {
           hits: data.articles || [],
-          nbPages: Math.ceil(data.totalResults / 10), // Calculate total pages
+          nbPages: Math.ceil(data.totalResults / 24), // Calculate total pages
         },
       });
     } catch (error) {
@@ -46,6 +47,13 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const setCategory = (category) => {
+    dispatch({
+      type: "SET_CATEGORY",
+      payload: category,
+    });
+  };
+
   const getNextPage = () => {
     dispatch({
       type: "NEXT_PAGE",
@@ -59,8 +67,9 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchApiData(`${API}q=${state.query}&page=${state.page + 1}&pageSize=10`);
-  }, [state.query, state.page]);
+    const categoryQuery = state.category ? `&category=${state.category}` : "";
+    fetchApiData(`${API}q=${state.query}${categoryQuery}&page=${state.page + 1}&pageSize=24`);
+  }, [state.query, state.category, state.page]);
 
   console.log("AppContext State:", state);
 
@@ -70,6 +79,7 @@ const AppProvider = ({ children }) => {
         ...state,
         removePost,
         searchPost,
+        setCategory,
         getNextPage,
         getPrevPage,
       }}
@@ -82,7 +92,7 @@ const AppProvider = ({ children }) => {
 const useGlobalContext = () => {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error("useGlobalContext must be used within a AppProvider");
+    throw new Error("useGlobalContext must be used within an AppProvider");
   }
   return context;
 };

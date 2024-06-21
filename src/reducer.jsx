@@ -22,6 +22,12 @@ const reducer = (state, action) => {
         query: action.payload,
         page: 0, // Reset page number on new search
       };
+    case "SET_CATEGORY":
+      return {
+        ...state,
+        category: action.payload,
+        page: 0, // Reset page number on new category
+      };
     case "NEXT_PAGE":
       return {
         ...state,
